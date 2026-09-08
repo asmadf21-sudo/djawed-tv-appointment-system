@@ -1,13 +1,18 @@
 {
-  "name": "server",
+  "name": "djawed-tv-appointment-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend API for the Djawed TV Immigration appointment booking system",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "appointment",
+    "booking",
+    "express",
+    "sqlite"
+  ],
+  "author": "Asmaa Dif",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
