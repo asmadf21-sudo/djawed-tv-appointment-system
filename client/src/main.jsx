@@ -1,14 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import App from "./App.jsx";
-import AdminLogin from "./AdminLogin.jsx";
 import AdminDashboard from "./AdminDashboard.jsx";
+import AdminLogin from "./AdminLogin.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -16,18 +12,18 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
 
-        {/* Formulaire public */}
+        {/* Formulaire client */}
         <Route path="/" element={<App />} />
 
         {/* Connexion administrateur */}
         <Route
-          path="/admin"
+          path="/admin/login"
           element={<AdminLogin />}
         />
 
         {/* Dashboard protégé */}
         <Route
-          path="/admin/dashboard"
+          path="/admin"
           element={
             <ProtectedRoute>
               <AdminDashboard />

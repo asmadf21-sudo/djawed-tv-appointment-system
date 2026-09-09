@@ -55,14 +55,11 @@ function App() {
   };
 
   // ============================================
-  // GESTION DE LA DATE
+  // GESTION DE LA DATE ET DES CRENEAUX
   // ============================================
 
   const handleDateChange = async (e) => {
     const selectedDate = e.target.value;
-
-    // Enregistrer la nouvelle date
-    // et réinitialiser le créneau
 
     setFormData((previousData) => ({
       ...previousData,
@@ -79,7 +76,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/available-slots?date=${selectedDate}`
+        `https://djawed-tv-appointment-system.onrender.com/api/available-slots?date=${selectedDate}`
       );
 
       const data = await response.json();
@@ -91,9 +88,9 @@ function App() {
         );
       }
 
-      setAvailableSlots(data.availableSlots);
+      setAvailableSlots(data.availableSlots || []);
 
-      if (data.availableSlots.length === 0) {
+      if (!data.availableSlots || data.availableSlots.length === 0) {
         setSlotsMessage(
           data.message ||
             "Aucun créneau disponible pour cette date."
@@ -101,7 +98,6 @@ function App() {
       }
 
     } catch (error) {
-
       console.error("Erreur disponibilités :", error);
 
       setSlotsMessage(
@@ -109,9 +105,7 @@ function App() {
       );
 
     } finally {
-
       setSlotsLoading(false);
-
     }
   };
 
@@ -126,7 +120,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/appointments",
+        "https://djawed-tv-appointment-system.onrender.com/api/appointments",
         {
           method: "POST",
 
@@ -144,7 +138,6 @@ function App() {
       const data = await response.json();
 
       if (!response.ok) {
-
         alert(
           data.error ||
             "Une erreur est survenue lors de l'envoi de votre demande."
@@ -158,17 +151,14 @@ function App() {
       setSubmitted(true);
 
     } catch (error) {
-
       console.error("Erreur :", error);
 
       alert(
-        "Impossible de contacter le serveur. Vérifiez que le backend est bien lancé."
+        "Impossible de contacter le serveur. Vérifiez votre connexion."
       );
 
     } finally {
-
       setLoading(false);
-
     }
   };
 
@@ -177,7 +167,6 @@ function App() {
   // ============================================
 
   const handleNewRequest = () => {
-
     setSubmitted(false);
 
     setFormData({
@@ -196,11 +185,9 @@ function App() {
 
     setAvailableSlots([]);
     setSlotsMessage("");
-
   };
 
   return (
-
     <div className="appointment-page">
 
       {/* ================= LEFT SIDE ================= */}
@@ -409,6 +396,7 @@ function App() {
           {!submitted ? (
 
             <>
+
 
               {/* TITLE */}
 
@@ -656,7 +644,7 @@ function App() {
                   </div>
 
 
-                  {/* AVAILABLE TIME SLOT */}
+                  {/* TIME SLOT */}
 
                   <div className="input-group">
 
@@ -711,9 +699,7 @@ function App() {
                     {slotsMessage && (
 
                       <small className="slots-message">
-
                         {slotsMessage}
-
                       </small>
 
                     )}

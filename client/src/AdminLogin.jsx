@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LockKeyhole, Mail, ShieldCheck, ArrowRight } from "lucide-react";
+import {
+  LockKeyhole,
+  Mail,
+  ShieldCheck,
+  ArrowRight,
+} from "lucide-react";
 
 import "./adminLogin.css";
 
@@ -23,7 +28,7 @@ function AdminLogin() {
     if (email === adminEmail && password === adminPassword) {
       localStorage.setItem("adminAuthenticated", "true");
 
-      navigate("/admin/dashboard");
+      navigate("/admin");
     } else {
       setError("Email ou mot de passe incorrect.");
     }
@@ -95,7 +100,10 @@ function AdminLogin() {
               </div>
             )}
 
-            <button type="submit" className="login-button">
+            <button
+              type="submit"
+              className="login-button"
+            >
               <span>Se connecter</span>
               <ArrowRight size={19} />
             </button>

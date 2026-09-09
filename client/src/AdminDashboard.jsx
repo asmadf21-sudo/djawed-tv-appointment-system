@@ -47,7 +47,7 @@ const navigate = useNavigate();
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/appointments"
+        "https://djawed-tv-appointment-system.onrender.com/api/appointments"
       );
 
       const data = await response.json();
@@ -113,7 +113,7 @@ const handleLogout = () => {
   const updateStatus = async (id, status) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/appointments/${id}/status`,
+        `https://djawed-tv-appointment-system.onrender.com/api/appointments/${id}/status`,
         {
           method: "PUT",
 
@@ -160,7 +160,7 @@ const handleLogout = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/appointments/${id}`,
+        `https://djawed-tv-appointment-system.onrender.com/api/appointments/${id}`,
         {
           method: "DELETE",
         }
