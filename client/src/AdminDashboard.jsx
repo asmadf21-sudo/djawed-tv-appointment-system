@@ -78,7 +78,7 @@ const navigate = useNavigate();
 const handleLogout = () => {
   localStorage.removeItem("adminAuthenticated");
 
-  navigate("/admin");
+  navigate("/admin/login");
 };
   // ============================================
   // NAVIGATION SIDEBAR
